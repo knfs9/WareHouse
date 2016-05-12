@@ -10,6 +10,15 @@ public class Box {
     public Box(int size){
         this.size = size;
     }
+
+    public Box(int id, int area_id, int size, int x, int y) {
+        this.id = id;
+        this.area_id = area_id;
+        this.size = size;
+        this.x = x;
+        this.y = y;
+    }
+
     public int getSquare(){
         return size*size;
     }

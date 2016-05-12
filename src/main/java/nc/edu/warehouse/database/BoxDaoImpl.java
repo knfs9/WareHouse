@@ -43,12 +43,12 @@ public class BoxDaoImpl implements BoxDao {
         String query = "select * from area a where a.area_id = " + box.getAreaId()  ;
         try(Connection connection = ConnectionFactory.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery()
         ){
             while(resultSet.next()){
                 int id = resultSet.getInt("area_id");
                 String area_name = resultSet.getString("area_name");
-                int rem_space = resultSet.getInt("rep_space");
+                int rem_space = resultSet.getInt("rem_space");
 
                 return new Area(id, area_name, rem_space);
             }
@@ -64,10 +64,10 @@ public class BoxDaoImpl implements BoxDao {
                                                                             + box.getSize()     + ","
                                                                             + box.getX()        + ","
                                                                             + box.getY()        + ")" ;
-        
+
         getArea(box).setRemSpace(getArea(box).getRemSpace() - box.getSize() * box.getSize());
         try(Connection connection = ConnectionFactory.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query)
         ){
             statement.executeUpdate();
         }catch (SQLException e){
