@@ -9,15 +9,11 @@ import org.apache.log4j.Logger;
 import java.util.Arrays;
 
 public class WhOptimizer {
-    private Area[] areas;
+
     private BoxDaoImpl boxDao = new BoxDaoImpl();
     private AreaDaoImpl areaDao = new AreaDaoImpl();
 
     private static final Logger log = Logger.getLogger(WhOptimizer.class);
-
-    public WhOptimizer(Area[] areas) {
-        this.areas = areas;
-    }
 
     public boolean placeBox(int size) {
         Box box = new Box(size);
@@ -104,7 +100,7 @@ public class WhOptimizer {
             return true;
         for (int i = x; i < locationsMatrix.length; i++) {
             for (int j = y; j < locationsMatrix[i].length; j++) {
-                if(j == size || i == size)
+                if (i >= size * size || j >= size * size)
                     break;
                 if (locationsMatrix[i][j] != -1)
                     return true;

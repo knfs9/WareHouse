@@ -12,10 +12,10 @@ public class ConnectionFactory {
     public static final String USER = "root";
     public static final String PASSWORD = "522000";
     public static final String URL = "jdbc:mysql://localhost:3306/warehousedb";
-
+    Connection connection;
     Logger log = Logger.getLogger(ConnectionFactory.class);
 
-    private ConnectionFactory(){
+    private ConnectionFactory() {
         try {
             Class.forName(DRIVER_CLASS);
         } catch (ClassNotFoundException e) {
@@ -23,18 +23,22 @@ public class ConnectionFactory {
         }
     }
 
-    private Connection createConnection(){
-        Connection connection = null;
-
+    private Connection createConnection() {
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            if (connection != null && !connection.isClosed()) {
+                log.info("Connection already have instance");
+                return connection;
+            } else {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                log.info("Connection created");
+            }
         } catch (SQLException e) {
             log.error(e.getMessage());
         }
         return connection;
     }
 
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         return instance.createConnection();
     }
 }

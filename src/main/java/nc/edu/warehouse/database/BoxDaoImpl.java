@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BoxDaoImpl implements BoxDao {
+    private Connection connection = ConnectionFactory.getConnection();
 
     @Override
     public List<Box> getAll() {
@@ -40,19 +40,18 @@ public class BoxDaoImpl implements BoxDao {
 
     @Override
     public Area getArea(Box box) {
-        String query = "select * from area a where a.area_id = " + box.getAreaId()  ;
-        try(Connection connection = ConnectionFactory.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery()
-        ){
-            while(resultSet.next()){
+        String query = "select * from area a where a.area_id = " + box.getAreaId();
+        try (PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()
+        ) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("area_id");
                 String area_name = resultSet.getString("area_name");
                 int rem_space = resultSet.getInt("rem_space");
 
                 return new Area(id, area_name, rem_space);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -60,21 +59,17 @@ public class BoxDaoImpl implements BoxDao {
 
     @Override
     public void create(Box box) {
-        String query = "insert into box(area_id, box_size, x, y) VALUES("   + box.getAreaId()   + ","
-                                                                            + box.getSize()     + ","
-                                                                            + box.getX()        + ","
-                                                                            + box.getY()        + ")" ;
-
-        getArea(box).setRemSpace(getArea(box).getRemSpace() - box.getSize() * box.getSize());
-        try(Connection connection = ConnectionFactory.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query)
-        ){
+        String query = "insert into box(area_id, box_size, x, y) VALUES(" + box.getAreaId() + ","
+                + box.getSize() + ","
+                + box.getX() + ","
+                + box.getY() + ")";
+        try (PreparedStatement statement = connection.prepareStatement(query)
+        ) {
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
 
 }
