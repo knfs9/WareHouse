@@ -36,6 +36,7 @@ public class BoxDaoImpl implements BoxDao {
     @Override
     public void deleteBox(int boxId) {
         String query = "delete from box where id=" + boxId;
+        //Continue from previous id
         String updateAuto = "alter table box AUTO_INCREMENT=" + boxId;
         try (Statement statement = connection.createStatement()
         ) {

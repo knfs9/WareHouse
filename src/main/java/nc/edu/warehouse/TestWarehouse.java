@@ -23,20 +23,22 @@ public class TestWarehouse {
             str = str.trim().toLowerCase();
             if (str.contains("box")) {
                 String temp[] = str.split(" ");
-                whOptimizer.placeBox(Integer.valueOf(temp[1]));
+                if (checkArg(temp[1]))
+                    whOptimizer.placeBox(Integer.valueOf(temp[1]));
             } else if (str.contains("get")) {
                 String temp[] = str.split(" ");
                 if (temp.length == 1) {
                     printAreas();
                 } else if (temp.length == 2) {
-                    if (NumberUtils.isDigits(temp[1])) {
+                    if (checkArg(temp[1]))
                         printBoxes(Integer.valueOf(temp[1]));
-                    }
                 }
             } else if (str.contains("rem")) {
                 String temp[] = str.split(" ");
-                whOptimizer.deleteAndUpdate(Integer.valueOf(temp[1]));
-                System.out.println("Box removed");
+                if (checkArg(temp[1])) {
+                    whOptimizer.deleteAndUpdate(Integer.valueOf(temp[1]));
+                    System.out.println("Box removed");
+                }
             } else {
                 System.out.println("Unknown command " + "\"" + str + "\"");
             }
@@ -50,6 +52,14 @@ public class TestWarehouse {
             System.out.println("Area Name: \"" + area.getAreaName() + "\" Area id: " + area.getAreaId()
                     + " Rem space: " + area.getRemSpace());
         }
+    }
+
+    private static boolean checkArg(String arg) {
+        if (!NumberUtils.isDigits(arg)) {
+            System.out.println("Second argument must be a number");
+            return false;
+        }
+        return true;
     }
 
     private static void printBoxes(int areaId) {
