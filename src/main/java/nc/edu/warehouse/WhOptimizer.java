@@ -15,7 +15,7 @@ public class WhOptimizer {
 
     private static final Logger log = Logger.getLogger(WhOptimizer.class);
 
-    public boolean placeBox(int size) {
+    public void placeBox(int size) {
         Box box = new Box(size);
         int id = 0;
         int[][] locationMatrix;
@@ -88,7 +88,6 @@ public class WhOptimizer {
             }
             id++;
         }
-        return true;
     }
 
     /*

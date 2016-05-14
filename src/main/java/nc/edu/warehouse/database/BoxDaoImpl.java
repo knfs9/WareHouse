@@ -1,13 +1,12 @@
 package nc.edu.warehouse.database;
 
 import nc.edu.warehouse.database.daos.BoxDao;
-import nc.edu.warehouse.database.tables.Area;
-import nc.edu.warehouse.database.tables.Box;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import nc.edu.warehouse.database.tables.Box;
+import nc.edu.warehouse.database.utils.ConnectionFactory;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoxDaoImpl implements BoxDao {
@@ -15,46 +14,33 @@ public class BoxDaoImpl implements BoxDao {
 
     @Override
     public List<Box> getAll() {
-//        String query = "SELECT * FROM box;";
-//        List<Box> boxes = new ArrayList<>();
-//        try(Connection connection = ConnectionFactory.getConnection();
-//            PreparedStatement statement = connection.prepareStatement(query);
-//            ResultSet resultSet = statement.executeQuery();
-//        ){
-//            while (resultSet.next()){
-//                Box box = new Box();
-//                box.setId(resultSet.getInt("id"));
-//                box.setAreaId(resultSet.getInt("area_id"));
-//                box.setSize(resultSet.getInt("box_size"));
-//                box.setX(resultSet.getInt("x"));
-//                box.setY(resultSet.getInt("y"));
-//                boxes.add(box);
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return boxes;
-        return null;
-    }
-
-    @Override
-    public Area getArea(Box box) {
-        String query = "select * from area a where a.area_id = " + box.getAreaId();
-        try (PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()
+        String query = "SELECT * FROM box;";
+        List<Box> boxes = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)
         ) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("area_id");
-                String area_name = resultSet.getString("area_name");
-                int rem_space = resultSet.getInt("rem_space");
-
-                return new Area(id, area_name, rem_space);
+                boxes.add(new Box(resultSet.getInt("id"),
+                        resultSet.getInt("area_id"),
+                        resultSet.getInt("box_size"),
+                        resultSet.getInt("x"),
+                        resultSet.getInt("y")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return boxes;
+    }
+
+    @Override
+    public void deleteBox(int boxId) {
+        String query = "delete from box where id=" + boxId;
+        try (Statement statement = connection.createStatement()
+        ) {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BoxDao {
     List<Box> getAll();
-    Area getArea(Box box);
     void create(Box box);
+    void deleteBox(int boxId);
 }

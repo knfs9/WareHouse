@@ -8,6 +8,5 @@ import java.util.List;
 public interface AreaDao {
     List<Box> getBoxes(int areaId);
     void update(Area area);
-    void deleteBox(int boxId);
     List<Area> getAreas();
 }

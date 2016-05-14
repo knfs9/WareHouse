@@ -1,6 +1,7 @@
 package nc.edu.warehouse;
 
 import nc.edu.warehouse.database.AreaDaoImpl;
+import nc.edu.warehouse.database.BoxDaoImpl;
 import nc.edu.warehouse.database.tables.Area;
 import nc.edu.warehouse.database.tables.Box;
 import org.apache.commons.lang.math.NumberUtils;
@@ -13,6 +14,7 @@ import java.util.List;
 public class TestWarehouse {
     private static WhOptimizer whOptimizer = new WhOptimizer();
     private static AreaDaoImpl areaDao = new AreaDaoImpl();
+    private static BoxDaoImpl boxDao = new BoxDaoImpl();
 
     public static void main(String[] args) throws IOException {
 
@@ -35,7 +37,7 @@ public class TestWarehouse {
                 }
             } else if (str.contains("rem")) {
                 String temp[] = str.split(" ");
-                areaDao.deleteBox(Integer.valueOf(temp[1]));
+                boxDao.deleteBox(Integer.valueOf(temp[1]));
                 System.out.println("Box removed");
             } else {
                 System.out.println("Unknown command " + "\"" + str + "\"");

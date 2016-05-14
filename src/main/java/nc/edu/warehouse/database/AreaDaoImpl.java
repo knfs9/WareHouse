@@ -1,9 +1,9 @@
 package nc.edu.warehouse.database;
 
-import nc.edu.warehouse.Constants;
 import nc.edu.warehouse.database.daos.AreaDao;
 import nc.edu.warehouse.database.tables.Area;
 import nc.edu.warehouse.database.tables.Box;
+import nc.edu.warehouse.database.utils.ConnectionFactory;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -63,16 +63,6 @@ public class AreaDaoImpl implements AreaDao {
         }
     }
 
-    @Override
-    public void deleteBox(int boxId) {
-        String query = "delete from box where id=" + boxId;
-        try (Statement statement = connection.createStatement()
-        ) {
-            statement.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int[][] getLocationMatrix(Area area) {
         String query = "select * from box b where b.area_id=" + area.getAreaId();
