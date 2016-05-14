@@ -2,8 +2,6 @@ package nc.edu.warehouse.database.utils;
 
 import org.apache.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -13,14 +11,9 @@ import java.util.Properties;
 
 public class ConnectionFactory {
     private static ConnectionFactory instance = new ConnectionFactory();
-    public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
-    public static final String USER = "root";
-    public static final String PASSWORD = "522000";
-    public static final String URL = "jdbc:mysql://localhost:3306/warehousedb";
-    Connection connection;
-    Properties props;
-
-    Logger log = Logger.getLogger(ConnectionFactory.class);
+    private Connection connection;
+    private Properties props;
+    private static final Logger log = Logger.getLogger(ConnectionFactory.class);
 
     private ConnectionFactory() {
         InputStream fis = getClass().getClassLoader().getResourceAsStream("connection.properties");

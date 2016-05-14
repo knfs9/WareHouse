@@ -14,10 +14,8 @@ import java.util.List;
 public class TestWarehouse {
     private static WhOptimizer whOptimizer = new WhOptimizer();
     private static AreaDaoImpl areaDao = new AreaDaoImpl();
-    private static BoxDaoImpl boxDao = new BoxDaoImpl();
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String str;
         System.out.print(">");
@@ -37,7 +35,7 @@ public class TestWarehouse {
                 }
             } else if (str.contains("rem")) {
                 String temp[] = str.split(" ");
-                boxDao.deleteBox(Integer.valueOf(temp[1]));
+                whOptimizer.deleteAndUpdate(Integer.valueOf(temp[1]));
                 System.out.println("Box removed");
             } else {
                 System.out.println("Unknown command " + "\"" + str + "\"");

@@ -4,7 +4,6 @@ import nc.edu.warehouse.database.daos.AreaDao;
 import nc.edu.warehouse.database.tables.Area;
 import nc.edu.warehouse.database.tables.Box;
 import nc.edu.warehouse.database.utils.ConnectionFactory;
-import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.List;
 
 public class AreaDaoImpl implements AreaDao {
 
-    private static final Logger log = Logger.getLogger(AreaDaoImpl.class);
     private int[][] matr = new int[6][7];
     private Connection connection = ConnectionFactory.getConnection();
 
@@ -51,6 +49,7 @@ public class AreaDaoImpl implements AreaDao {
         }
         return areas;
     }
+
 
     @Override
     public void update(Area area) {

@@ -108,6 +108,14 @@ public class WhOptimizer {
         return false;
     }
 
+    public void deleteAndUpdate(int boxId){
+        Box box = boxDao.getBox(boxId);
+        Area area = boxDao.getAreaByBoxId(boxId);
+        boxDao.deleteBox(boxId);
+        area.setRemSpace(area.getRemSpace() + (box.getSize() * box.getSize()));
+        areaDao.update(area);
+    }
+
     private void checkAndPlace(Area area, Box box) {
         box.setAreaId(area.getAreaId());
         boxDao.create(box);
