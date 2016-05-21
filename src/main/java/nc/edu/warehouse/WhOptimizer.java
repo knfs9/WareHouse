@@ -12,7 +12,7 @@ public class WhOptimizer {
 
     private BoxDaoImpl boxDao = new BoxDaoImpl();
     private AreaDaoImpl areaDao = new AreaDaoImpl();
-
+    private String actionInfo = "Box placed in....";
     private static final Logger log = Logger.getLogger(WhOptimizer.class);
 
     public void placeBox(int size) {
@@ -87,6 +87,8 @@ public class WhOptimizer {
                 break;
             }
             id++;
+            actionInfo = "Can't place box";
+            log.info(actionInfo);
         }
     }
 
@@ -121,6 +123,11 @@ public class WhOptimizer {
         boxDao.create(box);
         area.setRemSpace(area.getRemSpace() - (box.getSize() * box.getSize()));
         areaDao.update(area);
+        actionInfo = "Box placed in " + area.getAreaName();
         log.info("Box placed at x:" + box.getX() + ", y:" + box.getY() + " in " + area.getAreaName());
+    }
+
+    public  String getActionInfo(){
+        return actionInfo;
     }
 }

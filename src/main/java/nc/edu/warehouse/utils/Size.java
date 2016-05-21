@@ -1,4 +1,4 @@
-package nc.edu.warehouse.database.utils;
+package nc.edu.warehouse.utils;
 
 public enum Size {
     SMALL(2), MID(3), BIG(4);

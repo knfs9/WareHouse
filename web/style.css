@@ -1,0 +1,40 @@
+div.boxDiv{
+    width:350px;
+    height:300px;
+    border:1px solid #000;
+    border-radius: 5px;
+    line-height: 300px;
+    color: red;
+    font-size: 100px;
+    text-align: center;
+}
+div.smallBox{
+    width:100px;
+    height:100px;
+    border:1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
+    color: black;
+}
+div.bigBox{
+    width:200px;
+    height:200px;
+    border:1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 100px;
+    color: black;
+}
+div.middleBox{
+    width:150px;
+    height:150px;
+    border:1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 150px;
+    font-size: 100px;
+    color: black;
+}

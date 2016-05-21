@@ -3,7 +3,7 @@ package nc.edu.warehouse.database;
 import nc.edu.warehouse.database.daos.AreaDao;
 import nc.edu.warehouse.database.tables.Area;
 import nc.edu.warehouse.database.tables.Box;
-import nc.edu.warehouse.database.utils.ConnectionFactory;
+import nc.edu.warehouse.utils.ConnectionFactory;
 
 import java.sql.*;
 import java.util.ArrayList;

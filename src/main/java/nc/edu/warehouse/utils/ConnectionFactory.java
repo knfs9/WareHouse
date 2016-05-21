@@ -1,4 +1,4 @@
-package nc.edu.warehouse.database.utils;
+package nc.edu.warehouse.utils;
 
 import org.apache.log4j.Logger;
 

@@ -23,8 +23,11 @@ public class TestWarehouse {
             str = str.trim().toLowerCase();
             if (str.contains("box")) {
                 String temp[] = str.split(" ");
-                if (checkArg(temp[1]))
+                if (temp[1].equals("1")) {
+                    System.out.println("Min of size box is 2");
+                } else if (checkArg(temp[1])) {
                     whOptimizer.placeBox(Integer.valueOf(temp[1]));
+                }
             } else if (str.contains("get")) {
                 String temp[] = str.split(" ");
                 if (temp.length == 1) {
