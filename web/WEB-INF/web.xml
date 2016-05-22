@@ -6,7 +6,7 @@
 
     <!--<servlet>-->
         <!--<servlet-name>MainServlet</servlet-name>-->
-        <!--<servlet-class>nc.edu.warehouse.database.servlets.MainServlet</servlet-class>-->
+        <!--<servlet-class>nc.edu.warehouse.UI.MainServlet</servlet-class>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
         <!--<servlet-name>MainServlet</servlet-name>-->
@@ -14,7 +14,7 @@
     <!--</servlet-mapping>-->
 
 
-    <!--<welcome-file-list>-->
-        <!--<welcome-file>index.jsp</welcome-file>-->
-    <!--</welcome-file-list>-->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

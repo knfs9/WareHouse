@@ -33,24 +33,26 @@ public class AreasDrawer {
     public static String drawAreas() {
         StringBuilder areaString = new StringBuilder();
         List<Area> areas = areaDao.getAreas();
-        int counter = 0;
+        int counter = 1;
         int areaBottomPos = 250;
         int areaLeftPos = 20;
         int multiplier = 50;
 
-        for (Area area : areas) {
 
+
+        boolean nextLine = false;
+
+        for (Area area : areas) {
+            areaString.append("<div class=\"boxDiv\" style=\"position: absolute; bottom: " + areaBottomPos + "px; " +
+                    "left: " + areaLeftPos + "px\">");
             if (counter >= 2) {
-                areaBottomPos -= 150;
+                counter = 0;
                 areaLeftPos = 20;
-                areaString.append("<div class=\"boxDiv\" style=\"position: absolute; bottom: -" + areaBottomPos + "px; " +
-                        "left: " + areaLeftPos + "px\">");
-                areaLeftPos = 400;
+                areaBottomPos -= 350;
             } else {
-                areaString.append("<div class=\"boxDiv\" style=\"position: absolute; bottom: " + areaBottomPos + "px; " +
-                        "left: " + areaLeftPos + "px\">");
-                areaLeftPos = 400;
+                areaLeftPos += 380;
             }
+
             //get boxes in one of area with areaId
             List<Box> currentBoxes = areaDao.getBoxes(area.getAreaId());
 
