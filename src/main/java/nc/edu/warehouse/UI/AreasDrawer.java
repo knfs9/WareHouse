@@ -9,32 +9,66 @@ import java.util.List;
 
 public class AreasDrawer {
     private static AreaDaoImpl areaDao = new AreaDaoImpl();
+    private static boolean isFirstTime = true;
+    private static String smallBoxColor;
+    private static String middleBoxColor;
+    private static String bigBoxColor;
 
     private static String smallBox(int leftPos, int topPos) {
         return "<div class=\"smallBox\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
-                + topPos + "px \">2x2</div>";
+                + topPos + "px; background-color:" + smallBoxColor + "\">2x2</div>";
     }
 
     private static String middleBox(int leftPos, int topPos) {
         return "<div class=\"middleBox\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
-                + topPos + "px \">3x3</div>";
+                + topPos + "px; background-color:" + middleBoxColor +  "\">3x3</div>";
     }
 
     private static String bigBox(int leftPos, int topPos) {
         return " <div class=\"bigBox\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
-                + topPos + "px \">4x4</div>";
+                + topPos + "px; background-color:" + bigBoxColor + "\">4x4</div>";
+    }
+
+    public static String removeZone(String html) {
+
+        return html;
+    }
+
+    private static String getRandomColorInHEX() {
+        String[] letters;
+        letters = "0123456789ABCDEF".split("");
+        String code = "#";
+        for (int i = 0; i < 6; i++) {
+            double ind = Math.random() * 15;
+            int index = (int) Math.round(ind);
+            code += letters[index];
+        }
+        return code;
+    }
+    public static void generateColors(){
+        smallBoxColor = getRandomColorInHEX();
+        middleBoxColor = getRandomColorInHEX();
+        bigBoxColor = getRandomColorInHEX();
     }
 
     public static String drawAreas() {
         StringBuilder areaString = new StringBuilder();
         List<Area> areas = areaDao.getAreas();
+
         int counter = 1;
         int areaBottomPos = 250;
         int areaLeftPos = 20;
         int multiplier = 50;
+
+        // we wont change colors, after refreshing the page
+
+        if(isFirstTime){
+            generateColors();
+            isFirstTime = false;
+        }
 
         for (Area area : areas) {
             areaString.append("<div class=\"boxDiv\" style=\"position: absolute; bottom: " + areaBottomPos + "px; " +

@@ -24,13 +24,16 @@
     <input type="submit" value="set" style="width: 50px; margin-top: 20px;"/>
 </form>
 
+<%!WhOptimizer whOptimizer = new WhOptimizer(); %>
+
+<div class="outputLabel" style="margin-left: 300px">
+    <%=whOptimizer.getActionInfo()%>
+</div>
+
 <%
-    AreasDrawer.drawAreas();
-    String str[] ;
-    WhOptimizer whOptimizer = new WhOptimizer();
+    String str[];
 
     if (request.getParameterValues("choosesizes") != null) {
-
         str = request.getParameterValues("choosesizes");
         switch (str[0]) {
             case "size2x2":
@@ -45,13 +48,9 @@
         }
         response.sendRedirect("index.jsp");
     }
-
 %>
-<%=AreasDrawer.drawAreas()%>
-<div class="outputLabel" style="margin-left: 300px">
-    <%=whOptimizer.getActionInfo()%>
-</div>
 
+<%=AreasDrawer.drawAreas()%>
 
 
 </body>

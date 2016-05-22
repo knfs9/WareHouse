@@ -17,6 +17,7 @@ div.smallBox{
     line-height: 100px;
     font-size: 50px;
     color: black;
+    opacity: 0.85;
 }
 div.bigBox{
     width:200px;
@@ -27,6 +28,7 @@ div.bigBox{
     line-height: 200px;
     font-size: 100px;
     color: black;
+    opacity: 0.85;
 }
 div.middleBox{
     width:150px;
@@ -37,4 +39,5 @@ div.middleBox{
     line-height: 150px;
     font-size: 100px;
     color: black;
+    opacity: 0.85;
 }
