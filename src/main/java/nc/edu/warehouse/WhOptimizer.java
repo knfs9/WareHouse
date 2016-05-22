@@ -110,7 +110,7 @@ public class WhOptimizer {
         return false;
     }
 
-    public void deleteAndUpdate(int boxId){
+    public void deleteAndUpdate(int boxId) {
         Box box = boxDao.getBox(boxId);
         Area area = boxDao.getAreaByBoxId(boxId);
         boxDao.deleteBox(boxId);
@@ -127,7 +127,7 @@ public class WhOptimizer {
         log.info("Box placed at x:" + box.getX() + ", y:" + box.getY() + " in " + area.getAreaName());
     }
 
-    public  String getActionInfo(){
+    public String getActionInfo() {
         return actionInfo;
     }
 }

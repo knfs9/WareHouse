@@ -1,15 +1,13 @@
 package nc.edu.warehouse.UI;
 
-import nc.edu.warehouse.WhOptimizer;
+
 import nc.edu.warehouse.database.AreaDaoImpl;
-import nc.edu.warehouse.database.BoxDaoImpl;
 import nc.edu.warehouse.database.tables.Area;
 import nc.edu.warehouse.database.tables.Box;
 
 import java.util.List;
 
 public class AreasDrawer {
-    private static BoxDaoImpl boxDao = new BoxDaoImpl();
     private static AreaDaoImpl areaDao = new AreaDaoImpl();
 
     private static String smallBox(int leftPos, int topPos) {
@@ -37,10 +35,6 @@ public class AreasDrawer {
         int areaBottomPos = 250;
         int areaLeftPos = 20;
         int multiplier = 50;
-
-
-
-        boolean nextLine = false;
 
         for (Area area : areas) {
             areaString.append("<div class=\"boxDiv\" style=\"position: absolute; bottom: " + areaBottomPos + "px; " +
@@ -75,7 +69,6 @@ public class AreasDrawer {
             areaString.append(area.getAreaName() + "</div>");
             counter++;
         }
-
         return areaString.toString();
     }
 
