@@ -1,0 +1,25 @@
+Instruction list:
+
+get
+box
+rem
+
+Explanation:
+
+instruction       argument        output
+
+    get             none            print list of areas
+
+    get             areaID          print list of boxes for the areaID in table
+
+    box             size            adds a box with size(2,3,4)
+
+    rem             boxID           remove boxID
+
+P.S - Table format example
+AreaName
+------------------
+BoxID  BoxSize x  y
+  1        3   0  0
+  2        2   4  3
+  ..       ..  .. ..
