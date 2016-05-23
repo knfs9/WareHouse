@@ -62,6 +62,21 @@ public class AreaDaoImpl implements AreaDao {
         }
     }
 
+    public List<Integer> getRemSpaces() {
+        String query = "select rem_space from area where area_id!=";
+        List<Integer> spaces = new ArrayList<>();
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query);
+        ) {
+            while (resultSet.next()) {
+                spaces.add(resultSet.getInt("rem_space"));
+            }
+        } catch (SQLException e) {
+
+        }
+        return spaces;
+    }
+
 
     public int[][] getLocationMatrix(Area area) {
         String query = "select * from box b where b.area_id=" + area.getAreaId();

@@ -7,6 +7,7 @@ import nc.edu.warehouse.database.tables.Box;
 import org.apache.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class WhOptimizer {
 
@@ -69,11 +70,13 @@ public class WhOptimizer {
                                     stopFinding = true;
                                     checkNextPos = false;
                                     break;
-                                } else if (area.getRemSpace() <= boxSize * boxSize) {
+                                } else if (area.getRemSpace() <= 21 & isOtherAreasFull()) {
                                     checkAndPlace(area, box);
                                     stopFinding = true;
                                     checkNextPos = false;
                                     break;
+                                } else {
+
                                 }
                             } else {
                                 stopFinding = false;
@@ -98,11 +101,25 @@ public class WhOptimizer {
         }
     }
 
+    private boolean isOtherAreasFull() {
+        List<Integer> remSpaces = areaDao.getRemSpaces();
+        int counter = 0;
+        for(int a : remSpaces){
+            if(a == 0 || a <= 4)
+                counter++;
+        }
+        if(counter == remSpaces.size() - 1){
+            return true;
+        }
+        return false;
+    }
+
     /*
        return true if have overlap or cell is occupied
      */
     private boolean checkOverlap(int[][] locationsMatrix, int x, int y, int size) {
         boolean breakOuter = false;
+
         if (locationsMatrix[x][y] != -1)
             return true;
         for (int i = x; i < locationsMatrix.length; i++) {
@@ -110,16 +127,18 @@ public class WhOptimizer {
                 return false;
             for (int j = y; j < locationsMatrix[i].length; j++) {
 
-//                if (locationsMatrix[i][j] != -1)
-//                    return true;
-                if (i - 1 > size ) {
-                    breakOuter = true;
-                    break;
-                } else if (j > size) {
-                    break;
-                }
                 if (locationsMatrix[i][j] != -1)
                     return true;
+
+                if (i  >= size - 1 ) {
+                    breakOuter = true;
+                    break;
+                } else if (j  >= size - 1 ) {
+
+                    break;
+                }
+//                if (locationsMatrix[i][j] != -1)
+//                    return true;
             }
         }
         return false;
