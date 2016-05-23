@@ -54,3 +54,5 @@ PASSWORD=password
 3. Open http://localhost:8080/.war fileName/
 
 P.S Avoid white spaces in paths and filenames
+
+### Or you can clone project and configure Intellij Idea with Tomcat ###
