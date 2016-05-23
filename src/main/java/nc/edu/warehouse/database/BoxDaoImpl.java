@@ -37,7 +37,7 @@ public class BoxDaoImpl implements BoxDao {
     public void deleteBox(int boxId) {
         String query = "delete from box where id=" + boxId;
         //Continue from previous id
-        String updateAuto = "alter table box AUTO_INCREMENT=" + boxId;
+        String updateAuto = "alter table box AUTO_INCREMENT=" + getMinId();
         try (Statement statement = connection.createStatement()
         ) {
             statement.executeUpdate(query);
@@ -45,6 +45,22 @@ public class BoxDaoImpl implements BoxDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getMinId(){
+        String query = "SELECT MIN(id) as minID from box";
+        String minId = "";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query);
+        ) {
+            while (resultSet.next()) {
+                minId = resultSet.getString("minID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return minId;
     }
 
     public Area getAreaByBoxId(int boxId) {

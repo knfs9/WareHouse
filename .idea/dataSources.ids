@@ -28,7 +28,7 @@
       </key>
       <column id="8" parent="3" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(6)</data-type>
+        <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="9" parent="3" name="area_id">
@@ -50,11 +50,20 @@
         <columns>area_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="14" parent="3" name="PRIMARY">
+      <index id="14" parent="3" name="box_id_pk">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="15" parent="3" name="box_id_pk">
+        <columns>id</columns>
+        <underlying-index>box_id_pk</underlying-index>
+      </key>
+      <key id="16" parent="3" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="15" parent="3" name="box_ibfk_1">
+      <foreign-key id="17" parent="3" name="box_ibfk_1">
         <columns>area_id</columns>
         <ref-key>~.area.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>

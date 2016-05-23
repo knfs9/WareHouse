@@ -69,7 +69,7 @@ public class WhOptimizer {
                                     stopFinding = true;
                                     checkNextPos = false;
                                     break;
-                                } else if (area.getRemSpace() <= 21) {
+                                } else if (area.getRemSpace() <= boxSize * boxSize) {
                                     checkAndPlace(area, box);
                                     stopFinding = true;
                                     checkNextPos = false;
@@ -78,11 +78,10 @@ public class WhOptimizer {
                             } else {
                                 stopFinding = false;
                                 checkNextPos = true;
-                                break;
+                                continue;
                             }
                         }
                     }
-
                 }
                 if (checkNextPos)
                     continue;
@@ -111,12 +110,12 @@ public class WhOptimizer {
                 return false;
             for (int j = y; j < locationsMatrix[i].length; j++) {
 
-                if (locationsMatrix[i][j] != -1)
-                    return true;
-                if (i >= size ) {
+//                if (locationsMatrix[i][j] != -1)
+//                    return true;
+                if (i - 1 > size ) {
                     breakOuter = true;
                     break;
-                } else if (j >= size) {
+                } else if (j > size) {
                     break;
                 }
                 if (locationsMatrix[i][j] != -1)

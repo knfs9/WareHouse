@@ -14,10 +14,11 @@ function clickME(i) {
 
         //set color if we press on div element
         div.style.backgroundColor = "#D93600";
-        document.getElementById('deleteID').value = lastID;
-        document.getElementById("hiddenForm").submit();
+
         if(confirm('Delete box with id ' + lastID + ' ?')){
             //Submit form without button
+            document.getElementById('deleteID').value = lastID;
+            document.getElementById("hiddenForm").submit();
             div.parentNode.removeChild(div);
         }else{
             div.style.backgroundColor = saveColor;
