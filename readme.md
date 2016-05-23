@@ -50,7 +50,7 @@ PASSWORD=password
 
 ### Tomcat ###
 1. Install and configure [Tomcat](http://tomcat.apache.org/)
-2. Edit sript deploy/startup.bat and run
+2. Edit sript bin/startup.bat and run
 3. Open http://localhost:8080/.war fileName/
 
 
