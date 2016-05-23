@@ -4,7 +4,7 @@
 
 ### MySQL database ###
 
-1. Install and Configure (MySQL)[https://www.mysql.com/] Database
+1. Install and Configure [MySQL](https://www.mysql.com/) Database
 2. Create new database
 3. Run script
 ```
