@@ -29,6 +29,11 @@ public class WhOptimizer {
         boolean checkNextPos = false;
 
         while ((area = areaDao.getNext(id)) != null) {
+            //If there is no space under the box, immediately look for the following
+            if (area.getRemSpace() < box.getSize() * box.getSize()) {
+                id++;
+                continue;
+            }
 
             locationMatrix = areaDao.getLocationMatrix(area);
             Arrays.fill(starts, -1);
@@ -64,7 +69,7 @@ public class WhOptimizer {
                                     stopFinding = true;
                                     checkNextPos = false;
                                     break;
-                                } else if (area.getRemSpace() <= 14) {
+                                } else if (area.getRemSpace() <= 21) {
                                     checkAndPlace(area, box);
                                     stopFinding = true;
                                     checkNextPos = false;
@@ -77,9 +82,11 @@ public class WhOptimizer {
                             }
                         }
                     }
+
                 }
                 if (checkNextPos)
                     continue;
+
                 if (checkNextArea || stopFinding)
                     break;
             }
@@ -96,13 +103,22 @@ public class WhOptimizer {
        return true if have overlap or cell is occupied
      */
     private boolean checkOverlap(int[][] locationsMatrix, int x, int y, int size) {
-
+        boolean breakOuter = false;
         if (locationsMatrix[x][y] != -1)
             return true;
         for (int i = x; i < locationsMatrix.length; i++) {
+            if (breakOuter)
+                return false;
             for (int j = y; j < locationsMatrix[i].length; j++) {
-                if (i >= size * size || j >= size * size)
+
+                if (locationsMatrix[i][j] != -1)
+                    return true;
+                if (i >= size ) {
+                    breakOuter = true;
                     break;
+                } else if (j >= size) {
+                    break;
+                }
                 if (locationsMatrix[i][j] != -1)
                     return true;
             }
@@ -116,6 +132,7 @@ public class WhOptimizer {
         boxDao.deleteBox(boxId);
         area.setRemSpace(area.getRemSpace() + (box.getSize() * box.getSize()));
         areaDao.update(area);
+        log.info("Box deleted at x:" + box.getX() + ", y:" + box.getY() + " in " + area.getAreaName());
     }
 
     private void checkAndPlace(Area area, Box box) {

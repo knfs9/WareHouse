@@ -14,20 +14,20 @@ public class AreasDrawer {
     private static String middleBoxColor;
     private static String bigBoxColor;
 
-    private static String smallBox(int leftPos, int topPos) {
-        return "<div class=\"smallBox\" style=\"position: absolute; left: "
+    private static String smallBox(int leftPos, int topPos, int id) {
+        return "<div id=\"" + id + "\" class=\"smallBox\" onclick=\"clickME('" + id + "')\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
                 + topPos + "px; background-color:" + smallBoxColor + "\">2x2</div>";
     }
 
-    private static String middleBox(int leftPos, int topPos) {
-        return "<div class=\"middleBox\" style=\"position: absolute; left: "
+    private static String middleBox(int leftPos, int topPos, int id) {
+        return "<div id=\"" + id + "\" class=\"middleBox\" onclick=\"clickME('" + id + "')\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
-                + topPos + "px; background-color:" + middleBoxColor +  "\">3x3</div>";
+                + topPos + "px; background-color:" + middleBoxColor + "\">3x3</div>";
     }
 
-    private static String bigBox(int leftPos, int topPos) {
-        return " <div class=\"bigBox\" style=\"position: absolute; left: "
+    private static String bigBox(int leftPos, int topPos, int id) {
+        return " <div id=\"" + id + "\" class=\"bigBox\" onclick=\"clickME('" + id + "')\" style=\"position: absolute; left: "
                 + leftPos + "px; top: "
                 + topPos + "px; background-color:" + bigBoxColor + "\">4x4</div>";
     }
@@ -48,7 +48,8 @@ public class AreasDrawer {
         }
         return code;
     }
-    public static void generateColors(){
+
+    public static void generateColors() {
         smallBoxColor = getRandomColorInHEX();
         middleBoxColor = getRandomColorInHEX();
         bigBoxColor = getRandomColorInHEX();
@@ -65,7 +66,7 @@ public class AreasDrawer {
 
         // we wont change colors, after refreshing the page
 
-        if(isFirstTime){
+        if (isFirstTime) {
             generateColors();
             isFirstTime = false;
         }
@@ -88,15 +89,15 @@ public class AreasDrawer {
                 switch (box.getSize()) {
                     case 2:
                         areaString.append(smallBox(box.getY() * multiplier,
-                                box.getX() * multiplier));
+                                box.getX() * multiplier, box.getId()));
                         break;
                     case 3:
                         areaString.append(middleBox(box.getY() * multiplier,
-                                box.getX() * multiplier));
+                                box.getX() * multiplier, box.getId()));
                         break;
                     case 4:
                         areaString.append(bigBox(box.getY() * multiplier,
-                                box.getX() * multiplier));
+                                box.getX() * multiplier, box.getId()));
                         break;
                 }
             }

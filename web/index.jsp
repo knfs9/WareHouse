@@ -7,8 +7,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; UTF-8">
-    <title>$Title$</title>
+    <title>Warehouse</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="myFunctions.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,11 @@
         </select>
     </div>
     <input type="submit" value="set" style="width: 50px; margin-top: 20px;"/>
+
+</form>
+
+<form id="hiddenForm" method="post" action="index.jsp">
+    <input name="delete" id="deleteID" type="hidden" value="id" style="width: 50px;"/>
 </form>
 
 <%!WhOptimizer whOptimizer = new WhOptimizer(); %>
@@ -29,6 +35,7 @@
 <div class="outputLabel" style="margin-left: 300px">
     <%=whOptimizer.getActionInfo()%>
 </div>
+
 
 <%
     String str[];
@@ -47,11 +54,16 @@
                 break;
         }
         response.sendRedirect("index.jsp");
+        //if div selected in param will be box id from database
+    }
+
+    if( request.getParameter("delete") !=  null && !request.getParameter("delete").trim().equals("id")){
+        whOptimizer.deleteAndUpdate(Integer.valueOf(request.getParameter("delete")));
+        response.sendRedirect("index.jsp");
     }
 %>
 
 <%=AreasDrawer.drawAreas()%>
-
 
 </body>
 </html>
