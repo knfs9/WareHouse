@@ -1,6 +1,6 @@
 # Warehouse NC project #
 
-### First step - clone project ###
+### First step - download Deploy/WareHouse.war ###
 
 ### MySQL database ###
 
@@ -53,4 +53,4 @@ PASSWORD=password
 2. Edit sript bin/startup.bat and run
 3. Open http://localhost:8080/.war fileName/
 
-
+P.S Avoid white spaces in paths and filenames
