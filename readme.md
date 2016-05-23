@@ -38,3 +38,12 @@ INSERT INTO area(area_id, area_name, rem_space)
 VALUES(2, 'Area 3', 42);
 
 ```
+
+4. Configure connection.properties
+```
+DRIVER_CLASS=com.mysql.jdbc.Driver
+URL=jdbc:mysql://localhost:3306/YourDatabaseName
+USER=login
+PASSWORD=password
+
+```
