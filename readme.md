@@ -4,7 +4,7 @@
 
 ### MySQL database ###
 
-1. Install and Configure MySQL Database
+1. Install and Configure (MySQL)[https://www.mysql.com/] Database
 2. Create new database
 3. Run script
 ```
@@ -39,7 +39,7 @@ VALUES(2, 'Area 3', 42);
 
 ```
 
-4. Configure connection.properties
+Configure src/resource/connection.properties
 ```
 DRIVER_CLASS=com.mysql.jdbc.Driver
 URL=jdbc:mysql://localhost:3306/YourDatabaseName
@@ -47,3 +47,10 @@ USER=login
 PASSWORD=password
 
 ```
+
+### Tomcat ###
+1. Install and configure [Tomcat](http://tomcat.apache.org/)
+2. Edit sript deploy/startup.bat and run
+3. Open http://localhost:8080/.war fileName/
+
+
